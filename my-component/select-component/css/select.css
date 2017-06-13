@@ -1,0 +1,66 @@
+body{
+	margin:0;
+	font-family:"微软雅黑";
+}
+ul,li{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+input{
+	outline:none;
+	cursor: pointer;
+}
+.clearFix:after{
+	display: block;
+	content:'';
+	clear:both;
+}
+.mg-l10{
+	margin-left: 10px;
+}
+.relativeRalation{
+	position: relative;
+}
+.inputBox{
+	width: 240px;
+	height: 36px;
+	border:1px solid #8391a5;
+	border-radius: 5px;
+	font-size:14px;
+	color:#8391a5;
+	line-height: 36px;
+	text-indent: 10px;
+}
+.openUp,.packUp{
+	width:11px;
+	height:7px;
+	position:absolute;
+	top:15px;
+	right: 14px;
+	cursor:pointer;
+}
+.openUp{
+	background: url(../image/openUp.png) no-repeat;
+}
+.packUp{
+	background: url(../image/packUp.png) no-repeat;
+}
+.dropList{
+	border: 1px solid #d1dbe5;
+    width: 242px;
+    max-height: 254px;
+    border-radius: 3px;
+    margin-top: 5px;
+    overflow: auto;
+}
+.dropList li {
+	padding-left: 20px;
+	height: 36px;
+	line-height: 36px;
+	color:#48576a;
+	font-size:14px;
+}
+.dropList li:hover {
+	background-color: #e4e8f1
+}

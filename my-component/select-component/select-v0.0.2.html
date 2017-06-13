@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/select.css">
+    <script src="js/vue.js"></script>
+
+</head>
+
+<body>
+<div id="app">
+    <div style="float: left;">
+        <h2>自定义的下拉框</h2>
+        <div id="component-select">
+             <lr-select 
+                :data="this.countryList" 
+                @watch-click="clickHandle"
+            /></lr-select>
+        </div>
+    </div>
+     <div style="float: left;">
+        <h2>自定义的下拉框</h2>
+        <div id="component-select">
+             <lr-select 
+                :data="this.dateList" 
+                @watch-click="clickHandle"
+            /></lr-select>
+        </div>
+    </div>
+</div>
+<script>
+    Vue.component('lr-select',{
+        data:function(){
+            return {
+                selecItem:'请选择',
+                showListFlag:false,
+                classChange:'openUp'
+            }
+        },
+        props:[
+            'data'
+        ],
+        template:'<div class="mg-l10">\
+            <div class="select-parent relativeRalation" @click="showList">\
+                <input type="text" name="" class="inputBox" v-model="selecItem" readonly="readonly">\
+                <i :class="[classChange]"></i>\
+            </div>\
+            <lr-list :data="data" @watch-click="clickHandle" :showListFlag="showListFlag" v-if="showListFlag" @watch-flag="flagHandle"></lr-list>\
+        </div>',
+        methods:{
+            clickHandle:function(item){
+               this.selecItem = item;
+            },
+            showList:function(){
+                this.showListFlag = true;
+                this.classChange = 'packUp';
+            },
+            flagHandle:function(flag){
+                this.showListFlag = flag;
+                 this.classChange = 'openUp';
+            }
+        }
+    });
+   
+    Vue.component('lr-list',{
+        props:[
+            'data',
+            'showListFlag'
+        ],
+        template:'<ul class="dropList">\
+                <li \
+                    v-for="item in data" \
+                    :showListFlag="showListFlag"\
+                    @click="itemclick(item)"\
+                >{{item}}</li>\
+            </ul>',
+        methods:{
+            itemclick:function(item){
+                var flag = this.showListFlag ;
+                flag = false;
+                this.$emit('watch-flag',flag);
+                this.$emit('watch-click',item);
+            }
+        }
+    });
+    
+    new Vue({
+        el:'#app',
+        data:{
+            countryList:["北京","上海","杭州",],
+            dateList:[
+                "17-06-13",
+                "17-06-14",
+                "17-06-15",
+                "17-06-16",
+                "17-06-17",
+                "17-06-18"
+            ]
+        },
+        methods:{
+            clickHandle:function(item){
+            }
+        }
+    });
+</script>
+</body>
+</html>
