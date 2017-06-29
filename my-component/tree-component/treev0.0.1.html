@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/select.css">
+    <script src="js/vue.js"></script>
+
+</head>
+
+<body>
+<div id="app">
+    <lr-tree></lr-tree>
+</div>
+<script>
+    Vue.component('lr-tree',{
+        data:function(){
+            return {
+               
+            }
+        },
+        props:[
+           
+        ],
+        template:'\
+        <div class="tree-menu-comm tree-menu">\
+            <ul>\
+                <li v-for="item of data">\
+                    <div class="tree-title">\
+                        <span><strong>我的音乐</strong> <i class="ico"></i></span>\
+                    </div>\
+                </li>\
+            </ul> \   
+        </div>',
+        methods:{
+           
+        }
+    });
+   
+    new Vue({
+        el:'#app',
+        data:{
+           
+        },
+        methods:{
+            
+        }
+    });
+</script>
+</body>
+</html>

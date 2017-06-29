@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/alert.css">
+    <link rel="stylesheet" type="text/css" href="css/fontFace.css">
+    <script src="js/vue.js"></script>
+
+</head>
+
+<body>
+<div id="app">
+	<lr-alert></lr-alert>
+	<lr-alert :type="success"></lr-alert>
+</div>
+<script>
+    Vue.component('lr-alert',{
+    	props:{
+			type:{
+				type:String,
+				default:"info"
+			},
+		},
+    	data:function(){
+    		return {}
+    	},
+    	computed:{
+    		iconclasses:function(){
+    			console.log(this.type)
+    			return 'm-icon-'+this.type;
+    		}
+    	},
+        template:'<div class="alert-box tip-msg mg-t10 mg-l10 relativeRalation">\
+       <span :class="[iconclasses]"></span>\
+		<span class="text m-alert-success">成功提示的文案</span>\
+		<span class="close"></span>\
+	</div>'
+    });
+   
+    new Vue({
+        el:'#app'
+       
+    });
+</script>
+</body>
+</html>

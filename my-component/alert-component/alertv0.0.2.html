@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/alert.css">
+    <link rel="stylesheet" type="text/css" href="css/fontFace.css">
+    <script src="js/vue.js"></script>
+
+</head>
+
+<body>
+<div id="app">
+	<lr-alert>
+     <template slot="titleTmp">
+         <p>我是定制的信息</p>
+         <p>我是定制的信息</p>
+         <p>我是定制的信息</p>
+         <p>我是定制的信息</p>
+     </template>   
+    </lr-alert>
+	<lr-alert 
+        :type="this.type" 
+        :closeable="this.closeable" 
+    ></lr-alert>
+    <!-- 这里要注意下如果是type种形式 以一个自定义属性传进子组件的话,那么就不要在newVue里面的data去定义type/如果是以:type的形式传进来的话,那么要在newVue里面的data去定义type这个属性,不然会报错说没有定义type -->
+</div>
+<script>
+    Vue.component('lr-alert',{
+    	props:{
+			type:{
+				type:String,
+				default:"info"
+			},
+            closeable:{
+                type:Boolean,
+                default:true
+            }
+		},
+    	computed:{
+    		iconclasses:function(){
+    			return 'm-icon-'+this.type;
+    		},
+            title:function(){
+                if(this.type== 'success'){
+                    return '成功'
+                }else if(this.type== 'warning'){
+                    return '错误'
+                }else{
+                    return '我是其他'
+                }
+            }
+    	},
+        template:'<div class="alert-box tip-msg mg-t10 mg-l10 relativeRalation">\
+       <span :class="[iconclasses]"></span>\
+       <slot name="titleTmp">\
+		  <span class="text m-alert-success">{{title}}提示的文案</span>\
+        </slot>\
+		<span :class="{close:closeable}"></span>\
+	</div>'
+    });
+   
+    new Vue({
+        el:'#app',
+        data:{
+            type:'success',
+            closeable:false
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/select.css">
+    <script src="js/vue.js"></script>
+
+</head>
+
+<body>
+<div id="app">
+    <div style="float: left;">
+        <h2>自定义的下拉框</h2>
+        <div id="component-select">
+             <lr-select 
+                :data="this.countryList" 
+                @watch-click="clickHandle"
+            /></lr-select>
+        </div>
+       <!--  <div class="mg-l10">
+            <div class="select-parent relativeRalation"> -->
+                <!-- <div name="inputBox" class="inputBox">请选择</div> -->
+                <!-- <input type="" name="" class="inputBox" value="请选择">
+                <i class="openUp"></i>
+            </div>
+            <ul class="dropList">
+                <li>北京</li>
+                <li>北京</li>
+                <li>北京</li>
+                <li>北京</li>
+                <li>北京</li>
+            </ul>
+        </div> -->
+        
+    </div>
+</div>
+<script>
+    Vue.component('lr-select',{
+        data:function(){
+            return {
+                selecItem:'请选择'
+            }
+        },
+        props:[
+            'data'
+        ],
+        template:'<div class="mg-l10">\
+            <div class="select-parent relativeRalation">\
+                <input type="text" name="" class="inputBox" v-model="selecItem" readonly="readonly">\
+                <i class="openUp"></i>\
+            </div>\
+            <ul class="dropList">\
+                <li v-for="item in data" @click="itemClick(item)">{{item}}</li>\
+            </ul>\
+        </div>',
+        methods:{
+            itemClick:function(item){
+                this.selecItem = item;
+                this.$emit('watch-click',item)
+            }
+        }
+    });
+   
+    new Vue({
+        el:'#component-select',
+        data:{
+            countryList:["北京","上海","杭州",],
+            dateList:[
+                "17-06-13",
+                "17-06-14",
+                "17-06-15",
+                "17-06-13",
+                "17-06-14",
+                "17-06-15"
+            ]
+        },
+        methods:{
+            clickHandle:function(item){
+            }
+        }
+    });
+</script>
+</body>
+</html>

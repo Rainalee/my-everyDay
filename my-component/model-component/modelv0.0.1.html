@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/model.css">
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <lr-model 
+        title="我是自定义的title"
+        content="我是自定义的content"
+    >   
+        <div slot="footer">
+            <input class="btn blue" type="button" value="自定义的确定" @click="selfSureClick"/>
+            <input class="btn" type="button" value="自定义的取消" @click="selfCancelClick" />
+        </div>
+    </lr-model>
+    <lr-model></lr-model>
+    <lr-model>
+        <template slot="newcontent">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </template>
+    </lr-model>
+</div>
+<script>
+    Vue.component('lr-model',{
+        data:function(){
+            return {
+               
+            }
+        },
+        props:{
+            title:{
+                type:String,
+                default:"标准的标题"
+            },
+            content:{
+                type:String,
+                default:"标准的内容"
+            }
+        },
+        template:'<div class="modal">\
+                    <div class="modal-header">\
+                        <h4>{{title}}</h4>\
+                    </div>\
+                    <div class="modal-content">\
+                        <slot name="newcontent">\
+                            <div>\
+                                {{content}}\
+                            </div>\
+                        </slot>\
+                    </div>\
+                    <div class="modal-footer">\
+                        <slot name="footer">\
+                            <input class="btn blue" type="button" value="确定" @click="standardSure"/>\
+                            <input class="btn" type="button" value="取消"  @click="standardCancel"/>\
+                        </slot>\
+                    </div>\
+                </div>',
+        methods:{
+            standardCancel:function(){
+                alert('标准的取消');
+            },
+            standardSure:function(){
+                 alert('标准的确定');
+            }
+        }
+    });
+   
+    new Vue({
+        el:'#app',
+        data:{
+            
+        },
+        methods:{
+            selfCancelClick : function(){
+                alert('app自定义的取消')
+            },
+            selfSureClick : function(){
+                alert('app自定义的确定')
+            }
+        }
+    });
+</script>
+</body>
+</html>
