@@ -1,4 +1,4 @@
-#利用vue-cli搭建TS环境
+# 利用vue-cli搭建TS环境
 + 首先全局安装vue-cli  
 ---
 `npm install --global @vue/cli`  
@@ -25,4 +25,9 @@
 >删除源  
 >`nrm del <registry>`  
 >监测镜像速度  
->`nrm test`
+>`nrm test`  
++ 创建项目  
+---
+`vue create vue-ts`
+  
+选择Manually Select Features，然后选择自己想要的相关配置，例如 Tslint+Prettier
