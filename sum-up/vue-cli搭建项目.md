@@ -1,4 +1,4 @@
-#利用vue-cli搭建TS环境
+# 利用vue-cli搭建TS环境
 + 首先全局安装vue-cli  
 ---
 `npm install --global @vue/cli`  
